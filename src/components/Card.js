@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Card = ({ name, email, id }) => {
-  return(
+  return (
     <div className="tc grow bg-light-green br3 pa3 ma2 dib bw2 shadow-5">
       <img src={`https://robohash.org/${id}?200x200`} alt="robots" />
       <div>
@@ -10,6 +11,12 @@ const Card = ({ name, email, id }) => {
       </div>
     </div>
   );
-}
+};
+
+Card.propTypes = {
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired
+};
 
 export default Card;

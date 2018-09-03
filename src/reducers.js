@@ -3,10 +3,10 @@ import {
   REQUEST_ROBOTS_PENDING,
   REQUEST_ROBOTS_SUCCESS,
   REQUEST_ROBOTS_FAILED
-} from "./constants";
+} from './constants';
 
 const initialStateSearch = {
-  searchField: ""
+  searchField: ''
 };
 
 export const searchRobots = (state = initialStateSearch, action = {}) => {
@@ -16,12 +16,12 @@ export const searchRobots = (state = initialStateSearch, action = {}) => {
     default:
       return state;
   }
-}
+};
 
 const initialStateRobots = {
   isPending: false,
   robots: [],
-  error: ""
+  error: ''
 };
 
 export const requestRobots = (state = initialStateRobots, action = {}) => {
@@ -35,4 +35,4 @@ export const requestRobots = (state = initialStateRobots, action = {}) => {
     default:
       return state;
   }
-}
+};

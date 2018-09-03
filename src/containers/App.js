@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setSearchField, requestRobots } from '../actions';
 
@@ -20,7 +21,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onSearchChange: event => dispatch(setSearchField(event.target.value)),
     onRequestRobots: () => dispatch(requestRobots())
   };
 };
@@ -31,25 +32,42 @@ class App extends Component {
   }
 
   render() {
-    const { searchField, onSearchChange, robots, isPending } = this.props;
-    const filteredRobots = robots.filter(robot => {
+    const {
+      searchField,
+      onSearchChange,
+      robots,
+      isPending
+    } = this.props;
+
+    const filteredRobots = robots.filter((robot) => {
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     });
 
     return (
       <div className="tc">
         <h1 className="f1">RoboFriends</h1>
-        <SearchBox searchChange={onSearchChange}/>
+        <SearchBox searchChange={onSearchChange} />
         <Scroll>
-          { isPending ? <h1>Loading</h1> :
-            <ErrorBoundry>
-              <CardList robots={filteredRobots} />
-            </ErrorBoundry>
+          { isPending
+            ? <h1>Loading</h1>
+            : (
+              <ErrorBoundry>
+                <CardList robots={filteredRobots} />
+              </ErrorBoundry>
+            )
           }
         </Scroll>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  searchField: PropTypes.string.isRequired,
+  robots: PropTypes.arrayOf.isRequired,
+  isPending: PropTypes.bool.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
+  onRequestRobots: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

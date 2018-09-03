@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const SearchBox = ({ searchChange }) => {
   return (
@@ -11,6 +12,10 @@ const SearchBox = ({ searchChange }) => {
       />
     </div>
   );
-}
+};
+
+SearchBox.propTypes = {
+  searchChange: PropTypes.func.isRequired
+};
 
 export default SearchBox;
