@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import CardList from "../components/CardList";
-import SearchBox from "../components/SearchBox";
-import Scroll from "../components/Scroll";
-import ErrorBoundry from "../components/ErrorBoundry";
-import "./App.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setSearchField, requestRobots } from '../actions';
 
-import { setSearchField, requestRobots } from "../actions";
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
+import Scroll from '../components/Scroll';
+import ErrorBoundry from '../components/ErrorBoundry';
+
+import './App.css';
 
 const mapStateToProps = (state) => {
   return {
@@ -35,19 +36,19 @@ class App extends Component {
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     });
 
-    return isPending ?
-    <h1>Loading</h1> :
-    (
+    return (
       <div className="tc">
         <h1 className="f1">RoboFriends</h1>
-        <SearchBox searchChange={onSearchChange} />
+        <SearchBox searchChange={onSearchChange}/>
         <Scroll>
-          <ErrorBoundry>
-            <CardList robots={filteredRobots} />
-          </ErrorBoundry>
+          { isPending ? <h1>Loading</h1> :
+            <ErrorBoundry>
+              <CardList robots={filteredRobots} />
+            </ErrorBoundry>
+          }
         </Scroll>
       </div>
-    )
+    );
   }
 }
 
