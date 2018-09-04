@@ -22,7 +22,7 @@ const CardList = ({ robots }) => {
 };
 
 CardList.propTypes = {
-  robots: PropTypes.arrayOf.isRequired
+  robots: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default CardList;

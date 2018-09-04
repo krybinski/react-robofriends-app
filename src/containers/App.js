@@ -64,7 +64,7 @@ class App extends Component {
 
 App.propTypes = {
   searchField: PropTypes.string.isRequired,
-  robots: PropTypes.arrayOf.isRequired,
+  robots: PropTypes.arrayOf(PropTypes.object).isRequired,
   isPending: PropTypes.bool.isRequired,
   onSearchChange: PropTypes.func.isRequired,
   onRequestRobots: PropTypes.func.isRequired
